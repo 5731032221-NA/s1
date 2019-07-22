@@ -5,7 +5,8 @@ const path = require('path')
 
 const multer = require('multer')
 const MulterAzureStorage = require('multer-azure-blob-storage').MulterAzureStorage;
-
+//var multer = require('multer')
+//var multerAzure = require('multer-azure')
 // Expose the /upload endpoint
 const app = require('express')();
 //const http = require('http').Server(app);
@@ -64,7 +65,7 @@ const upload = multer({
     storage: azureStorage
 });
  
-app.post('/upload', upload.any(), (req, res, next) => {
+app.post('/upload', upload.single('photo'), (req, res, next) => {
   console.log(req.files)
   res.status(200).json(req.files)
 });

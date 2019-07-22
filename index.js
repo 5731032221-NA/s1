@@ -1,19 +1,32 @@
 //const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
-const app = require('express');
+//const PORT = process.env.PORT || 5000
+//const app = require('express');
 
 const multer = require('multer')
 const MulterAzureStorage = require('multer-azure-blob-storage').MulterAzureStorage;
 
-app.listen(PORT, function () {
-    console.log('app listening on port '+PORT+'!');
-})
+// Expose the /upload endpoint
+const app = require('express')();
+const http = require('http').Server(app);
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+// app.post('/upload', upload.single('photo'), (req, res, next) => {
+  // res.json(req.file)
+// })
+
+let port = process.env.PORT || 5000;
+http.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+});
+
+// app.listen(PORT, function () {
+    // console.log('app listening on port '+PORT+'!');
+// })
+
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+    // extended: true
+// }));
 
 // express()
   // .use(express.static(path.join(__dirname, 'public')))
@@ -37,7 +50,7 @@ const resolveMetadata = (req, file) => {
 };
  
 const azureStorage = new MulterAzureStorage({
-    connectionString: 'DefaultEndpointsProtocol=https;AccountName=oneteamblob;AccountKey=qcv7bSwg5vFNZRt1gY9XLPcv6OWKdKakKCj5znpUQRNQTPAOkLbhnCuZpt/1m4Gc9f5tV55x0CEzcVWjCubTaQ==;EndpointSuffix=core.windows.net'
+    connectionString: 'DefaultEndpointsProtocol=https;AccountName=oneteamblob;AccountKey=qcv7bSwg5vFNZRt1gY9XLPcv6OWKdKakKCj5znpUQRNQTPAOkLbhnCuZpt/1m4Gc9f5tV55x0CEzcVWjCubTaQ==;EndpointSuffix=core.windows.net',
     accessKey: 'qcv7bSwg5vFNZRt1gY9XLPcv6OWKdKakKCj5znpUQRNQTPAOkLbhnCuZpt/1m4Gc9f5tV55x0CEzcVWjCubTaQ==',
     accountName: 'oneteamblob',
     containerName: 'profilepicture',
@@ -51,7 +64,7 @@ const upload = multer({
     storage: azureStorage
 });
  
-app.post('/documents', upload.any(), (req, res, next) => {
+app.post('/upload', upload.any(), (req, res, next) => {
   console.log(req.files)
   res.status(200).json(req.files)
 });

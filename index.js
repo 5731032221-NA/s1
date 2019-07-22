@@ -8,14 +8,14 @@ const MulterAzureStorage = require('multer-azure-blob-storage').MulterAzureStora
 
 // Expose the /upload endpoint
 const app = require('express')();
-const http = require('http').Server(app);
+//const http = require('http').Server(app);
 
 // app.post('/upload', upload.single('photo'), (req, res, next) => {
   // res.json(req.file)
 // })
 
 let port = process.env.PORT || 5000;
-http.listen(port, () => {
+app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 

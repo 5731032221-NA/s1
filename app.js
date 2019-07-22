@@ -30,6 +30,10 @@ const azureStorage: MulterAzureStorage = new MulterAzureStorage({
 const upload: multer.Instance = multer({
     storage: azureStorage
 });
+
+app.get('/',  function (req, res) {
+  res.send('Hello Heroo')
+})
  
 app.post('/upload', upload.any(), (req: Request, res: Response, next: NextFunction) => {
   console.log(req.files)

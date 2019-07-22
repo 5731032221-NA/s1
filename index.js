@@ -68,7 +68,7 @@ var upload = multer({
     key: 'qcv7bSwg5vFNZRt1gY9XLPcv6OWKdKakKCj5znpUQRNQTPAOkLbhnCuZpt/1m4Gc9f5tV55x0CEzcVWjCubTaQ==', //A key listed under Access keys in the storage account pane
     container: 'profilepicture',  //Any container name, it will be created if it doesn't exist
     blobPathResolver: function(req, file, callback){
-      var blobPath = yourMagicLogic(req, file); //Calculate blobPath in your own way.
+      var blobPath = Date.now().toString() + '.png'; //Calculate blobPath in your own way.
       callback(null, blobPath);
     }
   })

@@ -60,6 +60,7 @@ app.listen(port, () => {
     // containerAccessLevel: 'blob',
     // urlExpirationTime: 60
 // });
+var name = 'name';
 
 var upload = multer({ 
   storage: multerAzure({
@@ -68,7 +69,7 @@ var upload = multer({
     key: 'qcv7bSwg5vFNZRt1gY9XLPcv6OWKdKakKCj5znpUQRNQTPAOkLbhnCuZpt/1m4Gc9f5tV55x0CEzcVWjCubTaQ==', //A key listed under Access keys in the storage account pane
     container: 'profilepicture',  //Any container name, it will be created if it doesn't exist
     blobPathResolver: function(req, file, callback){
-      var blobPath = Date.now().toString() + '.png'; //Calculate blobPath in your own way.
+      var blobPath = name + '.png'; //Calculate blobPath in your own way.
       callback(null, blobPath);
     }
   })
@@ -76,6 +77,7 @@ var upload = multer({
  
 app.post('/upload', upload.any(), function (req, res, next) {
   console.log(req.files)
+  name = Date.now().toString();
   res.status(200).send('Uploaded: ' + req.files)
 })
  

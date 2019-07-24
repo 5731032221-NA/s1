@@ -78,7 +78,7 @@ var upload = multer({
 app.post('/upload', upload.any(), function (req, res, next) {
   console.log(req.files)
   name = Date.now().toString();
-  res.status(200).send('Uploaded: ' + req.files)
+  res.status(200).send('Uploaded: ' + name)
 })
  
 // const upload = multer({

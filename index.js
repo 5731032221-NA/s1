@@ -70,7 +70,7 @@ var upload = multer({
     container: 'profilepicture',  //Any container name, it will be created if it doesn't exist
     blobPathResolver: function(req, file, callback){
      // blobPath = Date.now().toString() + '.png'; //Calculate blobPath in your own way.
-	  blobPath = vision.png
+	  blobPath = 'vision.png'
       callback(null, blobPath);
     }
   })

@@ -78,8 +78,7 @@ var upload = multer({
  
 app.post('/upload', upload.any(), function (req, res, next) {
   console.log(req.files);
-  res.status(200);
-  res.statusMessage = "testttt";
+  res.json("{'Uploaded':blobPath}");
 })
  
 // const upload = multer({

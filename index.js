@@ -77,8 +77,8 @@ var upload = multer({
 })
  
 app.post('/upload', upload.any(), function (req, res, next) {
-  console.log(req.files)
-  res.status(200).send(blobPath)
+  console.log(req.files);
+  res.status(200).send("hey"+blobPath);
 })
  
 // const upload = multer({
@@ -91,5 +91,5 @@ app.post('/upload', upload.any(), function (req, res, next) {
 // });
 
 app.get('/',  function (req, res) {
-  res.send('Hello Heroo v2')
+  res.send('Hello Heroo v3')
 })
